@@ -3,6 +3,14 @@
 
 function Drawing() {
     this.shapes = [];
+
+    this.add = function (shape) {
+        this.shapes.push(shape);
+    }.bind(this);
+
+    this.getShapes = function () {
+        return this.shapes;
+    }.bind(this);
 }
 
 function Shape(colour, thickness) {
@@ -10,11 +18,11 @@ function Shape(colour, thickness) {
     this.thickness = thickness; // in px
 }
 
-function Rectangle(colour, thickness, x, y, width, height) {
+function Rectangle(colour, thickness, x, y) {
     Shape.call(this, colour, thickness);
     this.topLeft = { x: x, y: y };
-    this.width = width;
-    this.height = height;
+    this.width = 0;
+    this.height = 0;
 
     this.getInitX = function () {
         return this.topLeft.x;
@@ -31,12 +39,17 @@ function Rectangle(colour, thickness, x, y, width, height) {
     this.getFinalY = function () {
         return this.topLeft.y + this.height;
     }.bind(this);
+
+    this.update = function ({ x, y }) {
+        this.width = x - this.topLeft.x;
+        this.height = y - this.topLeft.y;
+    }.bind(this);
 }
 
-function Line(colour, thickness, x1, y1, x2, y2) {
+function Line(colour, thickness, x, y) {
     Shape.call(this, colour, thickness);
-    this.start = { x: x1, y: y1 };
-    this.end = { x: x2, y: y2 };
+    this.start = { x, y };
+    this.end = { x, y };
 
     this.getInitX = function () {
         return this.start.x;
@@ -52,5 +65,10 @@ function Line(colour, thickness, x1, y1, x2, y2) {
 
     this.getFinalY = function () {
         return this.end.y;
+    }.bind(this);
+
+    this.update = function ({ x, y }) {
+        this.end.x = x;
+        this.end.y = y;
     }.bind(this);
 }
