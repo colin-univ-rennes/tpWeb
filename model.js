@@ -43,6 +43,7 @@ function Rectangle(colour, thickness, x, y) {
     this.update = function ({ x, y }) {
         this.width = x - this.topLeft.x;
         this.height = y - this.topLeft.y;
+        console.log("update rectangle", this.width, this.height);
     }.bind(this);
 }
 
@@ -70,5 +71,6 @@ function Line(colour, thickness, x, y) {
     this.update = function ({ x, y }) {
         this.end.x = x;
         this.end.y = y;
+        console.log("update line", this.start, this.end);
     }.bind(this);
 }

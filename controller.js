@@ -6,7 +6,12 @@ function Pencil(ctx, drawing, canvas) {
     this.currEditingMode = editingMode.line; // 0 = rectangle, 1 = line
     this.currLineWidth = 5;
     this.currColour = "#000000";
-    this.currentShape = null;
+    this.currentShape = new Rectangle(
+        this.currColour,
+        this.currLineWidth,
+        0,
+        0,
+    );
 
     // Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 
@@ -35,6 +40,7 @@ function Pencil(ctx, drawing, canvas) {
 
     this.onInteractionUpdate = function ({ x, y }) {
         console.log("Interaction update", typeof this.currentShape);
+        console.log("ctx ", ctx);
 
         this.currentShape.update({ x, y });
         this.currentShape.paint(ctx);

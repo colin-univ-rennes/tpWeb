@@ -1,6 +1,7 @@
 // Implémenter ici les fonctions paint à ajouter dans chacune des classes du modèle.
 
 Shape.prototype.paint = function (ctx) {
+    console.log(this.color);
     ctx.strokeStyle = this.colour;
     ctx.lineWidth = this.thickness;
 };
