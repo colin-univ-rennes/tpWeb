@@ -16,7 +16,6 @@ function DnD(canvas, interactor) {
         this.initX = mousePosition.x;
         this.initY = mousePosition.y;
         this.isDragging = true;
-        console.log("Mouse down", { x: this.initX, y: this.initY });
     }.bind(this);
 
     this.mouseMove = function (evt) {
@@ -24,7 +23,6 @@ function DnD(canvas, interactor) {
         if (this.isDragging) {
             this.endX = mousePosition.x;
             this.endY = mousePosition.y;
-            console.log("Mouse move", { x: this.endX, y: this.endY });
             interactor.onInteractionUpdate({ x: this.endX, y: this.endY });
         }
     }.bind(this);
@@ -34,7 +32,6 @@ function DnD(canvas, interactor) {
         if (this.isDragging) {
             this.endX = mousePosition.x;
             this.endY = mousePosition.y;
-            console.log("Mouse up", { x: this.endX, y: this.endY });
             interactor.onInteractionEnd(this);
         }
         this.isDragging = false;

@@ -24,26 +24,9 @@ function Rectangle(colour, thickness, x, y) {
     this.width = 0;
     this.height = 0;
 
-    this.getInitX = function () {
-        return this.topLeft.x;
-    }.bind(this);
-
-    this.getInitY = function () {
-        return this.topLeft.y;
-    }.bind(this);
-
-    this.getFinalX = function () {
-        return this.topLeft.x + this.width;
-    }.bind(this);
-
-    this.getFinalY = function () {
-        return this.topLeft.y + this.height;
-    }.bind(this);
-
     this.update = function ({ x, y }) {
         this.width = x - this.topLeft.x;
         this.height = y - this.topLeft.y;
-        console.log("update rectangle", this.width, this.height);
     }.bind(this);
 }
 
@@ -71,6 +54,5 @@ function Line(colour, thickness, x, y) {
     this.update = function ({ x, y }) {
         this.end.x = x;
         this.end.y = y;
-        console.log("update line", this.start, this.end);
     }.bind(this);
 }
